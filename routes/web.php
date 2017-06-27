@@ -11,16 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-
-
-    $techniques = DB::table('techniques')->get();
-
-   /* return view('welcome', compact('techniques'));*/
-
-   return $techniques;
-
-});
+Route::get('/', 'TechniqueController@index')->name('homepage');
 
 Auth::routes();
 
