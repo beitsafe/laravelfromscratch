@@ -24,12 +24,12 @@
                         <h2>Create a post</h2>
                         <hr class="short">
                         <form>
+
+                            {{csrf_field()}}
+
                             <div class="row">
-                                <div class="col-xs-12"> <input type="text" name="Techinque Name" placeholder="Technique Name"> </div>
-                                <div class="col-xs-12"> <input type="text" name="Technique Description" placeholder="Technique Description"> </div>
-                                <div class="col-xs-12">
-                                    <div class="input-checkbox"> <input type="checkbox" name="agree"> </div>
-                                </div>
+                                <div class="col-xs-12"> <input type="text" name="Techinque" placeholder="Technique Name"> </div>
+                                <div class="col-xs-12"> <input type="text" name="Description" placeholder="Technique Description"> </div>
                                 <div class="col-xs-12"> <button type="submit" class="btn btn--primary">Create Post</button> </div>
                                 <hr> </div>
                         </form>
