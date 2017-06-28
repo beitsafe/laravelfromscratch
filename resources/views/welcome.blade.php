@@ -17,7 +17,7 @@
 
                 @foreach ($techniques as $technique)
 
-                    <<div class="col-sm-4">
+                    <div class="col-sm-4">
                         <div class="feature feature-2 boxed boxed--border bg--white"> <i class="icon icon-Clock-Back color--primary"></i>
                             <div class="feature__body">
                                 <p> {{ $technique->title }} - {{ $technique->description }} </p>

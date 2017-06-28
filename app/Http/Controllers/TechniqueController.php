@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Technique;
+use App\User;
 use Illuminate\Http\Request;
 
 class TechniqueController extends Controller
@@ -26,7 +27,7 @@ class TechniqueController extends Controller
      */
     public function create()
     {
-        //
+        return view('home');
     }
 
     /**
