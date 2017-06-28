@@ -14,10 +14,12 @@ class CreateTechniquesTable extends Migration
     public function up()
     {
         Schema::create('techniques', function (Blueprint $table) {
-            $table->increments('id');
-            $table->text('title');
+            $table->string('id', 36)->primary();
+            $table->string('title');
             $table->text('description');
+            $table->string('user_id', 36)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

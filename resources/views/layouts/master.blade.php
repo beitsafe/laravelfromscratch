@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700" rel="stylesheet">
 
 </head>
+
 <body data-smooth-scroll-offset="77">
 
 @include('layouts.nav')
@@ -24,12 +25,16 @@
 
 
    @include('layouts.footer')
+
 </div>
+
 <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
 <script src="{{ asset('js/parallax.js') }}"></script>
 <script src="{{ asset('js/smooth-scroll.min.js') }}"></script>
 <script src="{{ asset('js/scripts.js') }}"></script>
+
 @yield('scripts')
+
 </body>
 
 </html>

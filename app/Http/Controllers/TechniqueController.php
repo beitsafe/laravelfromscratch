@@ -12,9 +12,9 @@ class TechniqueController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($technique)
+    public function index()
     {
-        $technique = Technique::all();
+        $techniques = Technique::where('id', '>=', 1)->get();
 
         return view('welcome', compact('techniques'));
     }
