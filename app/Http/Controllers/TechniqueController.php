@@ -15,9 +15,9 @@ class TechniqueController extends Controller
      */
     public function index()
     {
-        $techniques = Technique::where('id', '>=', 1)->get();
-
-        return view('welcome', compact('techniques'));
+        $techniques = Technique::all();
+        $send['Technique'] = \App\Technique::all();
+        return view('welcome' , compact('techniques'));
     }
 
     /**
@@ -25,9 +25,15 @@ class TechniqueController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Technique $technique)
     {
-        return view('home');
+        $send['Technique'] = new Technique;
+        $send['Form'] = [
+            'button' => 'Add',
+            'url' => url('home'),
+            'method' => 'POST'
+        ];
+        return view('home' , $send);
     }
 
     /**
@@ -36,9 +42,18 @@ class TechniqueController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Technique $technique)
     {
-        return view('')
+
+        $data = $request->except('_token');
+        $validator = $this->validator($data);
+
+        if ($validator->passes()) {
+            Technique::create($data);
+            return redirect('/')->with('message', 'success|Technique Created|Successfully created the Company');
+        } else {
+            return redirect("/")->with('message', 'danger|Technique Not Created|Failed to create the Company')->withErrors($validator)->withInput();
+        }
     }
 
     /**
@@ -84,5 +99,12 @@ class TechniqueController extends Controller
     public function destroy(Technique $technique)
     {
         //
+    }
+
+    protected function validator($data)
+    {
+        return Validator::make($data, [
+            'title' => 'required|max:255'
+        ]);
     }
 }

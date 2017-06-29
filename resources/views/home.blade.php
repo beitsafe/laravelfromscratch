@@ -23,16 +23,25 @@
                     <div class="switchable__text">
                         <h2>Create a post</h2>
                         <hr class="short">
-                        <form>
 
-                            {{csrf_field()}}
+                        {!! Form::model($Technique, array('url' => $Form['url'], 'method' => $Form['method'], 'class' => 'form-horizontal')) !!}
 
-                            <div class="row">
-                                <div class="col-xs-12"> <input type="text" name="Techinque" placeholder="Technique Name"> </div>
-                                <div class="col-xs-12"> <input type="text" name="Description" placeholder="Technique Description"> </div>
-                                <div class="col-xs-12"> <button type="submit" class="btn btn--primary">Create Post</button> </div>
-                                <hr> </div>
-                        </form>
+                        <div class="form-group">
+                            {!! Form::label('name', 'Technique Name:', array('class' => 'col-sm-2 control-label')) !!}
+                            <div class="col-sm-8">
+                                {!! Form::string('Title', $Technique->title, array('class' => 'form-control')) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('description', 'Technique Description:', array('class' => 'col-sm-2 control-label')) !!}
+                            <div class="col-sm-8">
+                                {!! Form::string('description', $Technique->description, array('class' => 'form-control')) !!}
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-sm-offset-2">
+                            <button type="submit" class="btn btn-success">Save</button>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-5"> <img alt="Image" class="border--round box-shadow-shallow" src="{{ asset('img/landing-7.jpg') }}"> </div>
