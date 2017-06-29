@@ -24,19 +24,28 @@
                         <h2>Create a post</h2>
                         <hr class="short">
 
-                        {!! Form::model($Technique, array('url' => $Form['url'], 'method' => $Form['method'], 'class' => 'form-horizontal')) !!}
+                        @if($errors)
+                            <div class="alert alert-danger">
+                                <h1>Save failed</h1>
+                                @foreach ($errors->all() as $message)
+                                    {{ $message }}
+                                @endforeach
+                            </div>
+                        @endif
+
+                        {!! Form::model($techniques = App\Technique::all(), array('url' => $Form['url'], 'method' => $Form['method'], 'class' => 'form-horizontal')) !!}
 
                         <div class="form-group">
-                            {!! Form::label('name', 'Technique Name:', array('class' => 'col-sm-2 control-label')) !!}
+                            {!! Form::label('title', 'Technique Name:', array('class' => 'col-sm-2 control-label')) !!}
                             <div class="col-sm-8">
-                                {!! Form::string('Title', $Technique->title, array('class' => 'form-control')) !!}
+                                {!! Form::text('title', $Technique->title, array('class' => 'form-control')) !!}
                             </div>
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('description', 'Technique Description:', array('class' => 'col-sm-2 control-label')) !!}
                             <div class="col-sm-8">
-                                {!! Form::string('description', $Technique->description, array('class' => 'form-control')) !!}
+                                {!! Form::textarea('description', $Technique->description, array('class' => 'form-control')) !!}
                             </div>
                         </div>
                         <div class="col-sm-4 col-sm-offset-2">

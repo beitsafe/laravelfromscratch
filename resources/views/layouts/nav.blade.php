@@ -59,17 +59,19 @@
                         </div>
                         <div class="bar__module">
                             @if (Auth::guest())
-                                <a class="btn btn--primary btn--sm type--uppercase" href="{{ asset('/admin/create') }}"> <span class="btn__text">
-                                    LOGIN
-                                </span> </a>
+                                <li><a href="{{ route('login') }}">Login</a></li>
                             @else
-                                <li class="">
-                                    <ul class="btn btn--secondary btn--lg">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                    </a>
+
+                                    <ul class="dropdown-menu" role="menu">
                                         <li>
                                             <a href="{{ route('logout') }}"
                                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                                {{ Auth::user()->name }} Logout
+                                                Logout
                                             </a>
 
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

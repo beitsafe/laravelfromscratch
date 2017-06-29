@@ -13,11 +13,12 @@
 
 Route::get('/', 'TechniqueController@index')->name('homepage');
 
-Route::group(['middleware' => 'auth', 'prefix' => 'admin/'], function () {
+Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/create', 'TechniqueController@create')->name('create');
-    Route::get('/store', 'TechniqueController@store')->name('store');
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::resource('technique', 'TechniqueController');
 });
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Technique;
 use App\User;
+use Validator;
 use Illuminate\Http\Request;
 
 class TechniqueController extends Controller
@@ -16,7 +17,6 @@ class TechniqueController extends Controller
     public function index()
     {
         $techniques = Technique::all();
-        $send['Technique'] = \App\Technique::all();
         return view('welcome' , compact('techniques'));
     }
 
@@ -25,15 +25,15 @@ class TechniqueController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Technique $technique)
+    public function create()
     {
         $send['Technique'] = new Technique;
         $send['Form'] = [
             'button' => 'Add',
-            'url' => url('home'),
+            'url' => url('technique'),
             'method' => 'POST'
         ];
-        return view('home' , $send);
+        return view('technique.create' , $send);
     }
 
     /**
@@ -42,17 +42,17 @@ class TechniqueController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Technique $technique)
+    public function store(Request $request)
     {
 
         $data = $request->except('_token');
         $validator = $this->validator($data);
 
         if ($validator->passes()) {
-            Technique::create($data);
+            $save = Technique::create($data);
             return redirect('/')->with('message', 'success|Technique Created|Successfully created the Company');
         } else {
-            return redirect("/")->with('message', 'danger|Technique Not Created|Failed to create the Company')->withErrors($validator)->withInput();
+            return redirect(url('/technique/create'))->with('message', 'danger|Technique Not Created|Failed to create the Company')->withErrors($validator)->withInput();
         }
     }
 
